@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('state')->nullable();
             $table->string('zip')->nullable();
             $table->string('country')->nullable();
-            $table->boolean('is_driver_available')->default(true);
+            $table->boolean('is_driver_available')->default(false);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

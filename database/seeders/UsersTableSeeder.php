@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class UsersTableSeeder extends Seeder
 {
@@ -25,6 +26,12 @@ class UsersTableSeeder extends Seeder
                 $user->assignRole($role);
             }
         });
+
+        User::create([
+            'name' => 'main admin',
+            'email' => 'dansoclyde@gmail.com',
+            'password' => Hash::make('password'),
+        ]);
     }
 
     private function setNumberOfUser($role){

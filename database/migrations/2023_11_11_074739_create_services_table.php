@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('services', function (Blueprint $table) {
             $table->id();
+            $table->string('tracking_number');
             $table->foreignId('service_type_id');
             $table->foreignId('vehicle_id');
             $table->foreignId('user_id');
