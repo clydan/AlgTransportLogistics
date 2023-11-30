@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('class');
             $table->string('model');
             $table->timestamp('registered_at');
+            $table->string('registration_number');
+            $table->boolean('is_available')->nullable();
             $table->timestamps();
         });
     }

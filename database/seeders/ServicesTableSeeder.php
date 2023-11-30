@@ -51,12 +51,12 @@ class ServicesTableSeeder extends Seeder
         $serviceType = ServiceType::where('name', 'pickup')->first();
         foreach ($pickupCustomers as $customer) {
             $customer->assignRole('customer');
-            
+
             $driver = User::factory()->create();
-            
+
             $driver->assignRole('driver');
 
-            $numberOfWeeks = rand(1, 4);
+            $numberOfWeeks = 1;
 
             $vehicle = Vehicle::create([
                 'name' => fake()->word() . ' class',
@@ -64,7 +64,9 @@ class ServicesTableSeeder extends Seeder
                 'model' => fake()->word(),
                 'class' => 'sedan',
                 'registered_at' => now()->addDays(rand(1, 200)),
+                'registration_number' => $this->generateFakeRegistrationNumber(),
                 'user_id' => $driver->id,
+                'is_available' => false,
             ]);
 
             $service = Service::create([
@@ -115,9 +117,11 @@ class ServicesTableSeeder extends Seeder
                 'name' => fake()->word() . ' class',
                 'manufacturer' => fake()->company(),
                 'model' => fake()->word(),
-                'class' => 'pickup',
+                'class' => 'Pickup',
                 'registered_at' => now()->addDays(rand(1, 200)),
+                'registration_number' => $this->generateFakeRegistrationNumber(),
                 'user_id' => $driver->id,
+                'is_available' => false,
             ]);
 
             $service = Service::create([
@@ -156,5 +160,13 @@ class ServicesTableSeeder extends Seeder
                 'route_id' => $route->id,
             ]);
         }
+    }
+
+    private function generateFakeRegistrationNumber(): string
+    {
+        $letters = substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ'), 0, 3);
+        $numbers = rand(1000, 9999);
+
+        return $letters . '-' . $numbers;
     }
 }

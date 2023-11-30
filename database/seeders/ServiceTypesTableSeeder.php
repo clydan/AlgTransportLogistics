@@ -17,27 +17,19 @@ class ServiceTypesTableSeeder extends Seeder
             'name' => 'rental',
         ],[
             'name' => 'rental',
-            'charge_configuration' => [
-                'sedan' => 1000.00,
-                'suv' => 1500.00,
-                'luxury' => 2000.00,
-            ]
+            'charge_per_km' => 100
         ]);
         $delivery = ServiceType::updateOrCreate([
             'name' => 'delivery',
         ],[
             'name' => 'delivery',
-            'charge_configuration' => [
-                '1km' => 10.00,
-            ]
+            'charge_per_km' => 20
         ]);
         $pickup  = ServiceType::updateOrCreate([
             'name' => 'pickup',
         ],[
             'name' => 'pickup',
-            'charge_configuration' => [
-                '1km' => 20.00,
-            ]
+            'charge_per_km' => 50
         ]);
     }
 }
